@@ -1,6 +1,4 @@
-﻿namespace Mini_Project;
-
-public class Monster
+﻿public class Monster
 {
     public int ID;
     public string Name;
