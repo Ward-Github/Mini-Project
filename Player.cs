@@ -8,6 +8,6 @@ public class Player
     public int Level;
     public Weapon CurrentWeapon;
     public Location CurrentLocation;
-    public QuestLog QuestList;
+    public QuestList QuestLog;
     public CounteditemList Inventory;
 }

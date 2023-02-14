@@ -1,6 +1,4 @@
-﻿namespace Mini_Project;
-
-public class Item
+﻿public class Item
 {
     public int ID;
     public string Name;

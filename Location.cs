@@ -1,6 +1,4 @@
-﻿namespace Mini_Project;
-
-public class Location
+﻿public class Location
 {
     public int ID;
     public string Name;
