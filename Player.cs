@@ -9,7 +9,7 @@ public class Player
     public Weapon CurrentWeapon;
     public Location CurrentLocation;
     public QuestList QuestLog;
-    public CounteditemList Inventory;
+    public CountedItemList Inventory;
 
     public Player(string name, int currentHitPoints, int maximumHitPoints, int gold, int experiencePoints, int level,
                   Weapon currentWeapon, Location currentLocation, QuestList questlog, CountedItemList inventory)
