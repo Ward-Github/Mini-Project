@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ward\\Desktop\\Mini-Project\\Mini-Project.csproj": {}
+    "C:\\Users\\fjspa\\Documents\\GitHub\\Mini-Project\\Mini-Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ward\\Desktop\\Mini-Project\\Mini-Project.csproj": {
+    "C:\\Users\\fjspa\\Documents\\GitHub\\Mini-Project\\Mini-Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ward\\Desktop\\Mini-Project\\Mini-Project.csproj",
+        "projectUniqueName": "C:\\Users\\fjspa\\Documents\\GitHub\\Mini-Project\\Mini-Project.csproj",
         "projectName": "Mini-Project",
-        "projectPath": "C:\\Users\\Ward\\Desktop\\Mini-Project\\Mini-Project.csproj",
-        "packagesPath": "C:\\Users\\Ward\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ward\\Desktop\\Mini-Project\\obj\\",
+        "projectPath": "C:\\Users\\fjspa\\Documents\\GitHub\\Mini-Project\\Mini-Project.csproj",
+        "packagesPath": "C:\\Users\\fjspa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fjspa\\Documents\\GitHub\\Mini-Project\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ward\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\fjspa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

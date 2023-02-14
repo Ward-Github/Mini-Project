@@ -1,0 +1,15 @@
+C:\Users\fjspa\Documents\GitHub\Mini-Project\bin\Debug\net6.0\Mini-Project.exe
+C:\Users\fjspa\Documents\GitHub\Mini-Project\bin\Debug\net6.0\Mini-Project.deps.json
+C:\Users\fjspa\Documents\GitHub\Mini-Project\bin\Debug\net6.0\Mini-Project.runtimeconfig.json
+C:\Users\fjspa\Documents\GitHub\Mini-Project\bin\Debug\net6.0\Mini-Project.dll
+C:\Users\fjspa\Documents\GitHub\Mini-Project\bin\Debug\net6.0\Mini-Project.pdb
+C:\Users\fjspa\Documents\GitHub\Mini-Project\obj\Debug\net6.0\Mini-Project.csproj.AssemblyReference.cache
+C:\Users\fjspa\Documents\GitHub\Mini-Project\obj\Debug\net6.0\Mini-Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fjspa\Documents\GitHub\Mini-Project\obj\Debug\net6.0\Mini-Project.AssemblyInfoInputs.cache
+C:\Users\fjspa\Documents\GitHub\Mini-Project\obj\Debug\net6.0\Mini-Project.AssemblyInfo.cs
+C:\Users\fjspa\Documents\GitHub\Mini-Project\obj\Debug\net6.0\Mini-Project.csproj.CoreCompileInputs.cache
+C:\Users\fjspa\Documents\GitHub\Mini-Project\obj\Debug\net6.0\Mini-Project.dll
+C:\Users\fjspa\Documents\GitHub\Mini-Project\obj\Debug\net6.0\refint\Mini-Project.dll
+C:\Users\fjspa\Documents\GitHub\Mini-Project\obj\Debug\net6.0\Mini-Project.pdb
+C:\Users\fjspa\Documents\GitHub\Mini-Project\obj\Debug\net6.0\Mini-Project.genruntimeconfig.cache
+C:\Users\fjspa\Documents\GitHub\Mini-Project\obj\Debug\net6.0\ref\Mini-Project.dll
