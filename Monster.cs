@@ -10,7 +10,7 @@
     public int CurrenHitPoints;
 
     public Monster(int id, string name, string namePlural, int maximumDamage, int rewardExperience, int rewardGold,
-        CountedItemList loot, int currenHitPoints)
+        int loot, int currenHitPoints)
     {
         ID = id;
         Name = name;
@@ -18,7 +18,7 @@
         MaximumDamage = maximumDamage;
         RewardExperience = rewardExperience;
         RewardGold = rewardGold;
-        Loot = loot;
+        Loot = new CountedItemList(new CountedItem(loot));
         CurrenHitPoints = currenHitPoints;
     }
 }
