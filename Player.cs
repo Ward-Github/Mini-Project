@@ -9,5 +9,5 @@ public class Player
     public Weapon CurrentWeapon;
     public Location CurrentLocation;
     public QuestList QuestLog;
-    public CounteditemList Inventory;
+    public CountedItemList Inventory;
 }
