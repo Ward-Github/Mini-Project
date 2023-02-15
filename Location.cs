@@ -6,10 +6,10 @@
     public Item ItemRequiredToEnter;
     public Quest QuestAvailableHere;
     public Monster MonsterLivingHere;
-    public Location LocationToNorth;
-    public Location LocationToEast;
-    public Location LocationToSouth;
-    public Location LocationToWest;
+    public Location? LocationToNorth = null;
+    public Location? LocationToEast = null;
+    public Location? LocationToSouth = null;
+    public Location? LocationToWest = null;
 
     public Location(int id, string name, string description, Item itemRequiredToEnter, Quest questAvailableHere, Monster monsterLivingHere)
     {
