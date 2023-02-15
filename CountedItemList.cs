@@ -4,11 +4,16 @@
 
     public CountedItemList(List<CountedItem> theCountedItemList)
     {
-        this.TheCountedItemList = theCountedItemList;
+        TheCountedItemList = theCountedItemList;
     }
 
-    internal void AddItem(Item item)
+    public void AddCountedItem(CountedItem countedItem)
     {
-        throw new NotImplementedException();
+        TheCountedItemList.Add(countedItem);
+    }
+
+    public void AddItem(Item item)
+    {
+        //Moet nog toegevoegd worden
     }
 }
