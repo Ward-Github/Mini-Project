@@ -25,4 +25,9 @@ public class Player
         QuestLog = questlog;
         Inventory = inventory;
     }
+
+    public void Regen()
+    {
+        CurrentHitPoints = MaximumHitPoints;
+    }
 }
