@@ -18,6 +18,6 @@ public class Quest
         RewardGold = rewardGold;
         RewardItem = rewardItem;
         RewardWeapon = rewardWeapon;
-        QuestCompletionItems = new CountedItemList(new List<CountedItem>());
+        QuestCompletionItems = new CountedItemList();
     }
 }
