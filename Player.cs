@@ -16,4 +16,10 @@ public class Player
         Name = name;
         Inventory = new CountedItemList();
     }
+
+    public void Regeneration(int healing)
+    {
+        CurrentHitPoints += healing;
+        Console.WriteLine($"Health: {CurrentHitPoints}");
+    }
 }
