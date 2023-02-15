@@ -2,9 +2,9 @@
 { 
     List<CountedItem> TheCountedItemList;
 
-    public CountedItemList(List<CountedItem> theCountedItemList)
+    public CountedItemList()
     {
-        TheCountedItemList = theCountedItemList;
+        TheCountedItemList = new List<CountedItem>();
     }
 
     public void AddCountedItem(CountedItem countedItem)
@@ -14,6 +14,23 @@
 
     public void AddItem(Item item)
     {
-        //Moet nog toegevoegd worden
+        bool isFound = false;
+
+        foreach (CountedItem countedItem in TheCountedItemList)
+        {
+            if (countedItem.TheItem.Name == item.Name)
+            {
+                countedItem.Quantity += 1;
+                isFound = true;
+                Console.WriteLine("Done");
+            }
+        }
+
+        if (!isFound)
+        {
+            TheCountedItemList.Add(new CountedItem(item, 1)); 
+            Console.WriteLine("Done");
+        }
+        
     }
 }
