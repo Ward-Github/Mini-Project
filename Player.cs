@@ -17,8 +17,8 @@ public class Player
         Inventory = new CountedItemList();
     }
 
-    public void Regen()
+    public void Regeneration(int healing)
     {
-        CurrentHitPoints = MaximumHitPoints;
+        CurrentHitPoints += healing;
     }
 }
