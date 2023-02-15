@@ -23,6 +23,6 @@ public class Player
         CurrentWeapon = currentWeapon;
         CurrentLocation = currentLocation;
         QuestLog = questlog;
-        Inventory = inventory;
+        Inventory = new CountedItemList();
     }
 }

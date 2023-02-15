@@ -1,10 +1,10 @@
 ﻿public class CountedItemList
-{ 
+{
     List<CountedItem> TheCountedItemList;
 
-    public CountedItemList(List<CountedItem> theCountedItemList)
+    public CountedItemList()
     {
-        TheCountedItemList = theCountedItemList;
+        TheCountedItemList = new List<CountedItem>();
     }
 
     public void AddCountedItem(CountedItem countedItem)
@@ -29,6 +29,6 @@
         {
             TheCountedItemList.Add(new CountedItem(item, 1));
         }
-        
+
     }
 }
