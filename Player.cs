@@ -19,6 +19,8 @@ public class Player
 
     public void Regeneration(int healing)
     {
+        Console.WriteLine($"Health gained: {healing}");
         CurrentHitPoints += healing;
+        
     }
 }
