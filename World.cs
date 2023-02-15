@@ -67,7 +67,6 @@ public static class World
     public static void PopulateMonsters()
     {
         Monster rat = new Monster(MONSTER_ID_RAT, "rat", "rats", 5, 3, 10, 3, 3);
-        Console.WriteLine(ItemByID(ITEM_ID_RAT_TAIL).Name);
         rat.Loot.AddItem(ItemByID(ITEM_ID_RAT_TAIL));
         rat.Loot.AddItem(ItemByID(ITEM_ID_PIECE_OF_FUR));
 
