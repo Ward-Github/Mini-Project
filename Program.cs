@@ -3,8 +3,20 @@
     public static void Main()
     {
         bool gamePlaying = true;
-        
-        Console.WriteLine("Welcome to our game!");
+
+        string banner = @"
+ ▒█████  ▓█████▄▓██   ██▓  ██████   ██████ ▓█████▓██   ██▓
+▒██▒  ██▒▒██▀ ██▌▒██  ██▒▒██    ▒ ▒██    ▒ ▓█   ▀ ▒██  ██▒
+▒██░  ██▒░██   █▌ ▒██ ██░░ ▓██▄   ░ ▓██▄   ▒███    ▒██ ██░
+▒██   ██░░▓█▄   ▌ ░ ▐██▓░  ▒   ██▒  ▒   ██▒▒▓█  ▄  ░ ▐██▓░
+░ ████▓▒░░▒████▓  ░ ██▒▓░▒██████▒▒▒██████▒▒░▒████▒ ░ ██▒▓░
+░ ▒░▒░▒░  ▒▒▓  ▒   ██▒▒▒ ▒ ▒▓▒ ▒ ░▒ ▒▓▒ ▒ ░░░ ▒░ ░  ██▒▒▒ 
+  ░ ▒ ▒░  ░ ▒  ▒ ▓██ ░▒░ ░ ░▒  ░ ░░ ░▒  ░ ░ ░ ░  ░▓██ ░▒░ 
+░ ░ ░ ▒   ░ ░  ░ ▒ ▒ ░░  ░  ░  ░  ░  ░  ░     ░   ▒ ▒ ░░  
+    ░ ░     ░    ░ ░           ░        ░     ░  ░░ ░     
+          ░      ░ ░                              ░ ░     
+";
+        Console.WriteLine(banner);
         string playerName = string.Empty;
 
         while (playerName == String.Empty)
@@ -12,6 +24,7 @@
             Console.Write("Name player >> ");
             playerName = Console.ReadLine();
         }
+        Console.Clear();
 
         Player player = new Player(playerName);
         player.CurrentLocation = World.Locations[0];
