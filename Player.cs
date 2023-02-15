@@ -22,7 +22,7 @@ public class Player
         Level = level;
         CurrentWeapon = currentWeapon;
         CurrentLocation = currentLocation;
-        Questlog = questlog;
+        QuestLog = questlog;
         Inventory = inventory;
     }
 }
