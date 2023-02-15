@@ -21,6 +21,7 @@
         RewardGold = rewardGold;
         MaximumHitPoints = maximumDamage;
         CurrenHitPoints = currenHitPoints;
+        Loot = new CountedItemList(new List<CountedItem>());
     }
     
 }

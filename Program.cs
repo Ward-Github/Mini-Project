@@ -2,6 +2,9 @@
 {
     public static void Main()
     {
-        Console.WriteLine("bruh");
+        foreach (Item item in World.Items)
+        {
+            Console.WriteLine(item.Name);
+        }
     }
 }
