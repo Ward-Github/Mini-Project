@@ -11,7 +11,7 @@
     public int MaximumHitPoints;
 
     public Monster(int id, string name, string namePlural, int maximumDamage, int rewardExperience, int rewardGold,
-        int loot, int currenHitPoints, int maximumHitPoints)
+        int currenHitPoints, int maximumHitPoints)
     {
         ID = id;
         Name = name;
