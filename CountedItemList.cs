@@ -2,9 +2,9 @@
 { 
     List<CountedItem> TheCountedItemList;
 
-    public CountedItemList()
+    public CountedItemList(List<CountedItem> theCountedItemList)
     {
-        TheCountedItemList = new List<CountedItem>();
+        TheCountedItemList = theCountedItemList;
     }
 
     public void AddCountedItem(CountedItem countedItem)
@@ -22,21 +22,12 @@
             {
                 countedItem.Quantity += 1;
                 isFound = true;
-<<<<<<< HEAD
-                Console.WriteLine("Done");
-=======
->>>>>>> Ward
             }
         }
 
         if (!isFound)
         {
-<<<<<<< HEAD
-            TheCountedItemList.Add(new CountedItem(item, 1)); 
-            Console.WriteLine("Done");
-=======
             TheCountedItemList.Add(new CountedItem(item, 1));
->>>>>>> Ward
         }
         
     }
