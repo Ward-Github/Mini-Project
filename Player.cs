@@ -1,29 +1,20 @@
 public class Player
 {
     public string Name;
-    public int CurrentHitPoints;
-    public int MaximumHitPoints;
-    public int Gold;
-    public int ExperiencePoints;
-    public int Level;
+    public int CurrentHitPoints = 100;
+    public int MaximumHitPoints = 100;
+    public int Gold = 0;
+    public int ExperiencePoints = 0;
+    public int Level = 0;
     public Weapon CurrentWeapon;
     public Location CurrentLocation;
     public QuestList QuestLog;
     public CountedItemList Inventory;
 
-    public Player(string name, int currentHitPoints, int maximumHitPoints, int gold, int experiencePoints, int level,
-                  Weapon currentWeapon, Location currentLocation, QuestList questlog, CountedItemList inventory)
+    public Player(string name)
     {
         Name = name;
-        CurrentHitPoints = currentHitPoints;
-        MaximumHitPoints = maximumHitPoints;
-        Gold = gold;
-        ExperiencePoints = experiencePoints;
-        Level = level;
-        CurrentWeapon = currentWeapon;
-        CurrentLocation = currentLocation;
-        QuestLog = questlog;
-        Inventory = inventory;
+        Inventory = new CountedItemList();
     }
 
     public void Regen()
