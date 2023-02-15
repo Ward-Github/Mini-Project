@@ -15,5 +15,6 @@ public class Player
     {
         Name = name;
         Inventory = new CountedItemList();
+        QuestLog = new QuestList();
     }
 }

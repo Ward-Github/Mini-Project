@@ -21,12 +21,13 @@
             int userInput = 0;
 
             while (userInput < 1 || userInput > 4)
-            { 
+            {
                 Console.WriteLine("\nWhat would you like to do? ");
                 Console.WriteLine("1: See game stats");
                 Console.WriteLine("2: Move");
                 Console.WriteLine("3: Fight");
-                Console.WriteLine("4: Quit\n");
+                Console.WriteLine("4: Quest list");
+                Console.WriteLine("5: Quit\n");
                 
                 Console.Write("Enter number >> ");
                 userInput = int.Parse(Console.ReadLine());
@@ -106,65 +107,78 @@
                     {
                         Console.WriteLine("Invalid input...");
                     }
+
+                    if (player.CurrentLocation.QuestAvailableHere != null)
+                    {
+                        player.QuestLog.QuestLog.Add(new PlayerQuest(player.CurrentLocation.QuestAvailableHere));
+                        Console.WriteLine("New quest found!");
+                        Console.WriteLine("Quest name > " + player.CurrentLocation.QuestAvailableHere.Name);
+                        Console.WriteLine("Quest description > " + player.CurrentLocation.QuestAvailableHere.Description);
+                        Console.WriteLine("\nThere will be some rewards for you if you complete it...");
+                        Console.WriteLine("Experience points > " + player.CurrentLocation.QuestAvailableHere.RewardExperience);
+                        Console.WriteLine("Gold > " + player.CurrentLocation.QuestAvailableHere.RewardGold);
+                        Console.WriteLine("Item > " + player.CurrentLocation.QuestAvailableHere.RewardItem.Name);
+                        Console.WriteLine("Weapon > " + player.CurrentLocation.QuestAvailableHere.RewardWeapon.Name);
+                    }
                 }
                 
             }
             else if (userInput == 3)
             {
+                // Quest != Monster, Dit aanpassen.
+                
                 if (player.CurrentLocation.MonsterLivingHere == null)
                 {
                     Console.WriteLine("No monster nearby...");
                 }
                 else
                 {
-                    Console.WriteLine("You talk to the farmer. He has a quest for you...");
-                    Console.WriteLine("Quest name > " + player.CurrentLocation.QuestAvailableHere.Name);
-                    Console.WriteLine("Quest description > " + player.CurrentLocation.QuestAvailableHere.Description);
-                    Console.WriteLine("\n He also has some rewards for you if you complete it...");
-                    Console.WriteLine("Experience points > " + player.CurrentLocation.QuestAvailableHere.RewardExperience);
-                    Console.WriteLine("Gold > " + player.CurrentLocation.QuestAvailableHere.RewardGold);
-                    Console.WriteLine("Item > " + player.CurrentLocation.QuestAvailableHere.RewardItem);
-                    Console.WriteLine("Weapon > " + player.CurrentLocation.QuestAvailableHere.RewardWeapon);
-                    
-                    string acceptQuest = String.Empty;
-                    while (acceptQuest != "Y" && acceptQuest != "N")
-                    {
-                        Console.Write("Accept (Y/N) >> ");
-                        acceptQuest = Console.ReadLine().ToUpper();
-                    }
-
-                    if (acceptQuest == "Y")
-                    {
-                        Console.WriteLine("Current equipped weapon > " + player.CurrentWeapon);
+                    Console.WriteLine("Current equipped weapon > " + player.CurrentWeapon);
                         
-                        string availableWeapons = "-- Available weapons --";
-                        foreach (Weapon weapon in World.Weapons)
-                        {
-                            availableWeapons += "( ID: " + weapon.ID + " / Name: " + weapon.Name + " / Min dmg: " + weapon.MinimumDamage + " / Max dmg: " + weapon.MaximumDamage + "\n";
-                        }
-                        Console.WriteLine(availableWeapons);
-
-                        string weaponSwitch = string.Empty;
-                        while (weaponSwitch != "S" && weaponSwitch != "C")
-                        {
-                            Console.Write("Switch weapon or continue (S/C) >> ");
-                            weaponSwitch = Console.ReadLine();
-                        }
-
-                        if (weaponSwitch == "S")
-                        {
-                            Console.Write("ID weapon >> ");
-                            int weaponToEquip = int.Parse(Console.ReadLine());
-                            player.CurrentWeapon = FindWeapon(weaponToEquip);
-                        }
-                    }
-                    else
+                    string availableWeapons = "-- Available weapons --";
+                    foreach (Weapon weapon in World.Weapons)
                     {
-                        Console.WriteLine("You walk away...");
+                        availableWeapons += "( ID: " + weapon.ID + " / Name: " + weapon.Name + " / Min dmg: " + weapon.MinimumDamage + " / Max dmg: " + weapon.MaximumDamage + "\n";
+                    }
+                    Console.WriteLine(availableWeapons);
+
+                    string weaponSwitch = string.Empty;
+                    while (weaponSwitch != "S" && weaponSwitch != "C")
+                    {
+                        Console.Write("Switch weapon or continue (S/C) >> ");
+                        weaponSwitch = Console.ReadLine();
+                    }
+
+                    if (weaponSwitch == "S")
+                    {
+                        Console.Write("ID weapon >> ");
+                        int weaponToEquip = int.Parse(Console.ReadLine());
+                        player.CurrentWeapon = World.WeaponByID(weaponToEquip);
                     }
                 }
             }
             else if (userInput == 4)
+            {
+                Console.WriteLine("=== Quest list ===");
+                if (player.QuestLog.QuestLog == null)
+                {
+                    Console.WriteLine("No quests started...");
+                }
+                else
+                {
+                    foreach (PlayerQuest playerQuest in player.QuestLog.QuestLog)
+                    {
+                        Console.WriteLine("Name > " + playerQuest.TheQuest.Name);
+                        Console.WriteLine("Description > " + playerQuest.TheQuest.Description);
+                        Console.WriteLine("Experience points > " + playerQuest.TheQuest.RewardExperience);
+                        Console.WriteLine("Gold > " + playerQuest.TheQuest.RewardGold);
+                        Console.WriteLine("Item > " + playerQuest.TheQuest.RewardItem.Name);
+                        Console.WriteLine("Weapon > " + playerQuest.TheQuest.RewardWeapon.Name);
+                        Console.WriteLine("==================");
+                    }
+                }
+            }
+            else if (userInput == 5)
             {
                 gamePlaying = false;
             }
@@ -178,18 +192,5 @@
         Console.WriteLine("Press enter to quit...");
         Console.ReadLine();
         Console.WriteLine("Quiting...");
-    }
-
-    public static Weapon FindWeapon(int id)
-    {
-        foreach (Weapon weapon in World.Weapons)
-        {
-            if (weapon.ID == id)
-            {
-                return weapon;
-            }
-        }
-
-        return null;
     }
 }
