@@ -14,6 +14,21 @@
 
     public void AddItem(Item item)
     {
-        //Moet nog toegevoegd worden
+        bool isFound = false;
+
+        foreach (CountedItem countedItem in TheCountedItemList)
+        {
+            if (countedItem.TheItem.Name == item.Name)
+            {
+                countedItem.Quantity += 1;
+                isFound = true;
+            }
+        }
+
+        if (!isFound)
+        {
+            TheCountedItemList.Add(new CountedItem(item, 1));
+        }
+        
     }
 }
