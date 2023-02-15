@@ -8,9 +8,20 @@
 
     public static void Main()
     {
-        foreach (Item item in World.Items)
+        Console.WriteLine("Welcome to our game!");
+        string playerName = string.Empty;
+
+        while (playerName == null)
         {
-            Console.WriteLine(item.Name);
+            Console.Write("Name >> ");
+            playerName = Console.ReadLine();
+        }
+
+        Player player = new Player(playerName);
+
+        while (player.CurrentHitPoints > 0)
+        {
+            
         }
     }
 }

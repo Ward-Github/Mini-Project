@@ -4,7 +4,9 @@
     <projectFile>Mini-Project.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3faebc1-a214-40fe-8269-12fbc504c533" name="Changes" comment="Test" />
+    <list default="true" id="f3faebc1-a214-40fe-8269-12fbc504c533" name="Changes" comment="Test">
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
