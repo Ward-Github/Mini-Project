@@ -5,11 +5,11 @@ public class Quest
     public string Description;
     public int RewardExperience;
     public int RewardGold;
-    public Item RewardItem;
-    public Weapon RewardWeapon;
+    public Item? RewardItem;
+    public Weapon? RewardWeapon;
     public CountedItemList QuestCompletionItems;
 
-    public Quest(int id, string name, string description, int rewardExperience, int rewardGold, Item rewardItem, Weapon rewardWeapon)
+    public Quest(int id, string name, string description, int rewardExperience, int rewardGold, Item? rewardItem, Weapon? rewardWeapon)
     {
         ID = id;
         Name = name;
