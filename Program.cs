@@ -117,8 +117,14 @@
                         Console.WriteLine("\nThere will be some rewards for you if you complete it...");
                         Console.WriteLine("Experience points > " + player.CurrentLocation.QuestAvailableHere.RewardExperience);
                         Console.WriteLine("Gold > " + player.CurrentLocation.QuestAvailableHere.RewardGold);
-                        Console.WriteLine("Item > " + player.CurrentLocation.QuestAvailableHere.RewardItem.Name);
-                        Console.WriteLine("Weapon > " + player.CurrentLocation.QuestAvailableHere.RewardWeapon.Name);
+                        if (player.CurrentLocation.QuestAvailableHere.RewardItem != null)
+                        {
+                            Console.WriteLine("Item > " + player.CurrentLocation.QuestAvailableHere.RewardItem.Name);
+                        }
+                        if (player.CurrentLocation.QuestAvailableHere.RewardWeapon != null)
+                        {
+                            Console.WriteLine("Weapon > " + player.CurrentLocation.QuestAvailableHere.RewardWeapon.Name);
+                        }
                     }
                 }
                 
