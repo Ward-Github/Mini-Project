@@ -20,6 +20,7 @@ public class Player
 
     public void Regeneration(int healing)
     {
+        if (CurrentHitPoints + healing >= MaximumHitPoints) CurrentHitPoints = MaximumHitPoints;
         CurrentHitPoints += healing;
         Console.WriteLine($"Health: {CurrentHitPoints}");
     }
