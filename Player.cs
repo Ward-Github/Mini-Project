@@ -10,12 +10,14 @@ public class Player
     public Location CurrentLocation;
     public QuestList QuestLog;
     public CountedItemList Inventory;
+    public List<Weapon> WeaponList;
 
     public Player(string name)
     {
         Name = name;
         Inventory = new CountedItemList();
         QuestLog = new QuestList();
+        WeaponList = new List<Weapon>();
     }
 
     public void Regeneration(int healing)
