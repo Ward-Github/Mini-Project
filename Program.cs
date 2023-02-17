@@ -33,6 +33,7 @@
         while (gamePlaying)
         {
             int userInput = 0;
+            player.Level = player.ExperiencePoints / 10;
 
             while (userInput < 1 || userInput > 4)
             {
@@ -309,6 +310,14 @@
 
                     if (beatMonster)
                     {
+                        Console.WriteLine("You have successfully beat > " + player.CurrentLocation.MonsterLivingHere.NamePlural);
+                        Console.WriteLine("=== Rewards ===");
+                        Console.WriteLine("Gold > " + player.CurrentLocation.MonsterLivingHere.RewardGold);
+                        Console.WriteLine("Experience > " + player.CurrentLocation.MonsterLivingHere.RewardExperience);
+
+                        player.Gold += player.CurrentLocation.MonsterLivingHere.RewardGold;
+                        player.ExperiencePoints += player.CurrentLocation.MonsterLivingHere.RewardExperience;
+                        
                         if (player.QuestLog.QuestLog != null)
                         {
                             foreach (PlayerQuest playerQuest in player.QuestLog.QuestLog)
@@ -316,7 +325,7 @@
                                 if (playerQuest.TheQuest.Description.Contains(player.CurrentLocation.MonsterLivingHere
                                         .Name))
                                 {
-                                    Console.WriteLine("Completed quest > " + playerQuest.TheQuest.Name + "!");
+                                    Console.WriteLine("\nCompleted quest > " + playerQuest.TheQuest.Name + "!");
                                     player.Gold += playerQuest.TheQuest.RewardGold;
                                     player.ExperiencePoints += playerQuest.TheQuest.RewardExperience;
                                     if (playerQuest.TheQuest.RewardItem != null)
