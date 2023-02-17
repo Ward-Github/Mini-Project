@@ -304,8 +304,8 @@
                         player.CurrentWeapon = weapontoEquip;
                         Console.WriteLine("Succesfully equipped weapon > " + weapontoEquip.Name);
                     }
-                    
-                    bool beatMonster = true; // Monster fight (Returned true/false)
+
+                    bool beatMonster = player.CurrentLocation.MonsterLivingHere.BossFight(player); // Monster fight (Returned true/false)
 
                     if (beatMonster)
                     {

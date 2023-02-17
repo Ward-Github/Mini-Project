@@ -30,7 +30,7 @@ public class Monster
     {
         //player naam en health toevoegen
         Console.WriteLine($@"You have come here to defeat the {Name}
-player Health: idk
+{player.Name} Health: {player.CurrentHitPoints}
 {Name} Health: {MaximumHitPoints}");
         while (CurrentHitPoints > 0)
         {
@@ -44,7 +44,7 @@ player Health: idk
                 Console.WriteLine($@"Current Weapon: {player.CurrentWeapon.Name}
 {Name} hit for {PlayerDamage} HP
 You were hit for {MonsterDamage} HP");
-                Thread.Sleep(50);
+                Thread.Sleep(1000);
                 Console.Clear();
             }
             else
