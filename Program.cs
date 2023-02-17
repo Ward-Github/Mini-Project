@@ -33,7 +33,6 @@
         while (gamePlaying)
         {
             int userInput = 0;
-            player.Level = player.ExperiencePoints / 10;
 
             while (userInput < 1 || userInput > 4)
             {
@@ -306,7 +305,7 @@
                         Console.WriteLine("Succesfully equipped weapon > " + weapontoEquip.Name);
                     }
 
-                    bool beatMonster = player.CurrentLocation.MonsterLivingHere.BossFight(player); // Monster fight (Returned true/false)
+                    bool beatMonster = player.CurrentLocation.MonsterLivingHere.BossFight(player);
 
                     if (beatMonster)
                     {
@@ -394,6 +393,15 @@
             else
             {
                 Console.WriteLine("Invalid input...");
+            }
+            
+            if (player.ExperiencePoints >= 10) {
+                player.Level += player.ExperiencePoints / 10;
+                player.ExperiencePoints = 0;
+                player.CurrentHitPoints += 10;
+                player.MaximumHitPoints += 10;
+                player.CurrentWeapon.MaximumDamage += player.Level;
+                Console.WriteLine("You have leveled up to level " + player.Level + "!");
             }
         }
         
