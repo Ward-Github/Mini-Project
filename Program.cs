@@ -43,7 +43,7 @@ class Program
             Console.WriteLine("6: Quit\n");
             
             Console.WriteLine("Press number (Keyboard) ");
-            ConsoleKeyInfo input = Console.ReadKey();
+            ConsoleKeyInfo input = Console.ReadKey(true);
 
             if (input.Key == ConsoleKey.D1)
             {
@@ -87,187 +87,182 @@ class Program
                 }
             
                 Console.WriteLine(map);
+                
+                Console.Write("Press on keyboard (N/E/S/W)");
+                ConsoleKeyInfo toLocation = Console.ReadKey(true);
 
-                string toLocation = String.Empty;
-
-                while (toLocation != "N" && toLocation != "E" && toLocation != "S" && toLocation != "W")
+                if (toLocation.Key == ConsoleKey.N)
                 {
-                    Console.Write("Where to go (N/E/S/W) >> ");
-                    toLocation = Console.ReadLine().ToUpper();
+                    if (player.CurrentLocation.LocationToNorth != null) {
+                        if (player.CurrentLocation.LocationToNorth.ItemRequiredToEnter == null)
+                        {
+                            player.CurrentLocation = player.CurrentLocation.LocationToNorth;
+                        }
+                        else
+                        {
+                            Item requiredItem = player.CurrentLocation.LocationToNorth.ItemRequiredToEnter;
+                            bool hasItem = false;
 
-                    if (toLocation == "N")
-                    {
-                        if (player.CurrentLocation.LocationToNorth != null) {
-                            if (player.CurrentLocation.LocationToNorth.ItemRequiredToEnter == null)
+                            foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
                             {
+                                if (countedItem.TheItem == requiredItem)
+                                {
+                                    hasItem = true;
+                                }
+                            }
+
+                            if (hasItem)
+                            {
+                                Console.WriteLine("You used your " + requiredItem.Name + " to access this location!");
                                 player.CurrentLocation = player.CurrentLocation.LocationToNorth;
                             }
                             else
                             {
-                                Item requiredItem = player.CurrentLocation.LocationToNorth.ItemRequiredToEnter;
-                                bool hasItem = false;
-
-                                foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
-                                {
-                                    if (countedItem.TheItem == requiredItem)
-                                    {
-                                        hasItem = true;
-                                    }
-                                }
-
-                                if (hasItem)
-                                {
-                                    Console.WriteLine("You used your " + requiredItem.Name + " to access this location!");
-                                    player.CurrentLocation = player.CurrentLocation.LocationToNorth;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You don't have the required item to access this location > " + requiredItem.Name);
-                                }
+                                Console.WriteLine("You don't have the required item to access this location > " + requiredItem.Name);
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine("You can't go there...");
-                        }
-                    }
-                    else if (toLocation == "E")
-                    {
-                        if (player.CurrentLocation.LocationToEast != null) 
-                        {
-                            if (player.CurrentLocation.LocationToEast.ItemRequiredToEnter == null)
-                            {
-                                player.CurrentLocation = player.CurrentLocation.LocationToEast;
-                            }
-                            else
-                            {
-                                Item requiredItem = player.CurrentLocation.LocationToEast.ItemRequiredToEnter;
-                                bool hasItem = false;
-
-                                foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
-                                {
-                                    if (countedItem.TheItem == requiredItem)
-                                    {
-                                        hasItem = true;
-                                    }
-                                }
-
-                                if (hasItem)
-                                {
-                                    Console.WriteLine("You used your " + requiredItem.Name + " to access this location!");
-                                    player.CurrentLocation = player.CurrentLocation.LocationToEast;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You don't have the required item to access this location > " + requiredItem.Name);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("You can't go there...");
-                        }
-                    }
-                    else if (toLocation == "W")
-                    {
-                        if (player.CurrentLocation.LocationToWest != null) 
-                        {
-                            if (player.CurrentLocation.LocationToWest.ItemRequiredToEnter == null)
-                            {
-                                player.CurrentLocation = player.CurrentLocation.LocationToWest;
-                            }
-                            else
-                            {
-                                Item requiredItem = player.CurrentLocation.LocationToWest.ItemRequiredToEnter;
-                                bool hasItem = false;
-
-                                foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
-                                {
-                                    if (countedItem.TheItem == requiredItem)
-                                    {
-                                        hasItem = true;
-                                    }
-                                }
-
-                                if (hasItem)
-                                {
-                                    Console.WriteLine("You used your " + requiredItem.Name + " to access this location!");
-                                    player.CurrentLocation = player.CurrentLocation.LocationToWest;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You don't have the required item to access this location > " + requiredItem.Name);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("You can't go there...");
-                        }
-                    }
-                    else if (toLocation == "S")
-                    {
-                        if (player.CurrentLocation.LocationToSouth != null) 
-                        {
-                            if (player.CurrentLocation.LocationToSouth.ItemRequiredToEnter == null)
-                            {
-                                player.CurrentLocation = player.CurrentLocation.LocationToSouth;
-                            }
-                            else
-                            {
-                                Item requiredItem = player.CurrentLocation.LocationToSouth.ItemRequiredToEnter;
-                                bool hasItem = false;
-
-                                foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
-                                {
-                                    if (countedItem.TheItem == requiredItem)
-                                    {
-                                        hasItem = true;
-                                    }
-                                }
-
-                                if (hasItem)
-                                {
-                                    Console.WriteLine("You used your " + requiredItem.Name + " to access this location!");
-                                    player.CurrentLocation = player.CurrentLocation.LocationToSouth;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You don't have the required item to access this location > " + requiredItem.Name);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("You can't go there...");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Invalid input...");
-                    }
-
-                    if (player.CurrentLocation.QuestAvailableHere != null)
-                    {
-                        player.QuestLog.QuestLog.Add(new PlayerQuest(player.CurrentLocation.QuestAvailableHere));
-                        Console.WriteLine("New quest found!");
-                        Console.WriteLine("Quest name > " + player.CurrentLocation.QuestAvailableHere.Name);
-                        Console.WriteLine("Quest description > " + player.CurrentLocation.QuestAvailableHere.Description);
-                        Console.WriteLine("\nThere will be some rewards for you if you complete it...");
-                        Console.WriteLine("Experience points > " + player.CurrentLocation.QuestAvailableHere.RewardExperience);
-                        Console.WriteLine("Gold > " + player.CurrentLocation.QuestAvailableHere.RewardGold);
-                        if (player.CurrentLocation.QuestAvailableHere.RewardItem != null)
-                        {
-                            Console.WriteLine("Item > " + player.CurrentLocation.QuestAvailableHere.RewardItem.Name);
-                        }
-
-                        if (player.CurrentLocation.QuestAvailableHere.RewardWeapon != null)
-                        { 
-                            Console.WriteLine("Weapon > " + player.CurrentLocation.QuestAvailableHere.RewardWeapon.Name);
-                        }
+                        Console.WriteLine("You can't go there...");
                     }
                 }
-                
+                else if (toLocation.Key == ConsoleKey.E)
+                {
+                    if (player.CurrentLocation.LocationToEast != null)
+                    {
+                        if (player.CurrentLocation.LocationToEast.ItemRequiredToEnter == null)
+                        {
+                            player.CurrentLocation = player.CurrentLocation.LocationToEast;
+                        }
+                        else
+                        {
+                            Item requiredItem = player.CurrentLocation.LocationToEast.ItemRequiredToEnter;
+                            bool hasItem = false;
+
+                            foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
+                            {
+                                if (countedItem.TheItem == requiredItem)
+                                {
+                                    hasItem = true;
+                                }
+                            }
+
+                            if (hasItem)
+                            {
+                                Console.WriteLine("You used your " + requiredItem.Name + " to access this location!");
+                                player.CurrentLocation = player.CurrentLocation.LocationToEast;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You don't have the required item to access this location > " +
+                                                  requiredItem.Name);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("You can't go there...");
+                    }
+                }
+                else if (toLocation.Key == ConsoleKey.W)
+                {
+                    if (player.CurrentLocation.LocationToWest != null) 
+                    {
+                        if (player.CurrentLocation.LocationToWest.ItemRequiredToEnter == null)
+                        {
+                            player.CurrentLocation = player.CurrentLocation.LocationToWest;
+                        }
+                        else
+                        {
+                            Item requiredItem = player.CurrentLocation.LocationToWest.ItemRequiredToEnter;
+                            bool hasItem = false;
+
+                            foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
+                            {
+                                if (countedItem.TheItem == requiredItem)
+                                {
+                                    hasItem = true;
+                                }
+                            }
+
+                            if (hasItem)
+                            {
+                                Console.WriteLine("You used your " + requiredItem.Name + " to access this location!");
+                                player.CurrentLocation = player.CurrentLocation.LocationToWest;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You don't have the required item to access this location > " + requiredItem.Name);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("You can't go there...");
+                    }
+                }
+                else if (toLocation.Key == ConsoleKey.S)
+                {
+                    if (player.CurrentLocation.LocationToSouth != null) 
+                    {
+                        if (player.CurrentLocation.LocationToSouth.ItemRequiredToEnter == null)
+                        {
+                            player.CurrentLocation = player.CurrentLocation.LocationToSouth;
+                        }
+                        else
+                        {
+                            Item requiredItem = player.CurrentLocation.LocationToSouth.ItemRequiredToEnter;
+                            bool hasItem = false;
+
+                            foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
+                            {
+                                if (countedItem.TheItem == requiredItem)
+                                {
+                                    hasItem = true;
+                                }
+                            }
+
+                            if (hasItem)
+                            {
+                                Console.WriteLine("You used your " + requiredItem.Name + " to access this location!");
+                                player.CurrentLocation = player.CurrentLocation.LocationToSouth;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You don't have the required item to access this location > " + requiredItem.Name);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("You can't go there...");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input...");
+                }
+
+                if (player.CurrentLocation.QuestAvailableHere != null)
+                {
+                    player.QuestLog.QuestLog.Add(new PlayerQuest(player.CurrentLocation.QuestAvailableHere));
+                    Console.WriteLine("New quest found!");
+                    Console.WriteLine("Quest name > " + player.CurrentLocation.QuestAvailableHere.Name);
+                    Console.WriteLine("Quest description > " + player.CurrentLocation.QuestAvailableHere.Description);
+                    Console.WriteLine("\nThere will be some rewards for you if you complete it...");
+                    Console.WriteLine("Experience points > " + player.CurrentLocation.QuestAvailableHere.RewardExperience);
+                    Console.WriteLine("Gold > " + player.CurrentLocation.QuestAvailableHere.RewardGold);
+                    if (player.CurrentLocation.QuestAvailableHere.RewardItem != null)
+                    {
+                        Console.WriteLine("Item > " + player.CurrentLocation.QuestAvailableHere.RewardItem.Name);
+                    }
+
+                    if (player.CurrentLocation.QuestAvailableHere.RewardWeapon != null)
+                    {
+                        Console.WriteLine("Weapon > " + player.CurrentLocation.QuestAvailableHere.RewardWeapon.Name);
+                    }
+                }
             }
             else if (input.Key == ConsoleKey.D3)
             {
