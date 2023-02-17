@@ -41,10 +41,13 @@ public class Monster
                 int MonsterDamage = random.Next(0, MaximumDamage);
                 CurrentHitPoints -= PlayerDamage;
                 player.CurrentHitPoints -= MonsterDamage;
+                Console.Clear();
                 Console.WriteLine($@"Current Weapon: {player.CurrentWeapon.Name}
 {Name} hit for {PlayerDamage} HP
 You were hit for {MonsterDamage} HP");
-                Thread.Sleep(1000);
+                PlayerHealthbar(player);
+                EnemyHealthBar();
+                Thread.Sleep(2000);
                 Console.Clear();
             }
             else
@@ -55,5 +58,47 @@ You were hit for {MonsterDamage} HP");
         }
         Console.WriteLine("You win!");
         return true;
+    }
+
+    public void PlayerHealthbar(Player player)
+    {
+        int Health = player.CurrentHitPoints / 10;
+        int RemovedHealth = player.MaximumHitPoints/10 - Health;
+        Console.Write("Player Healthbar: (");
+        for (int i = 0; i < Health; i++)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("x");
+        }
+
+        for (int i = 0; i < RemovedHealth; i++)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("x");
+        }
+        Console.ResetColor();
+        Console.Write(")");
+        Console.WriteLine();
+    }
+
+    public void EnemyHealthBar()
+    {
+        int Health = CurrentHitPoints;
+        int RemovedHealth = MaximumHitPoints - Health;
+        Console.Write("Monster Healthbar: (");
+        for (int i = 0; i < Health; i++)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("x");
+        }
+        
+        for (int i = 0; i < RemovedHealth; i++)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("x");
+        }
+        Console.ResetColor();
+        Console.Write(")");
+        Console.WriteLine();
     }
 }
