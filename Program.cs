@@ -1,4 +1,6 @@
-﻿class Program
+﻿using System;
+
+class Program
 {
     public static void Main()
     {
@@ -32,23 +34,18 @@
 
         while (gamePlaying)
         {
-            int userInput = 0;
+            Console.WriteLine("\nWhat would you like to do? ");
+            Console.WriteLine("1: See game stats");
+            Console.WriteLine("2: Move");
+            Console.WriteLine("3: Fight");
+            Console.WriteLine("4: Quest list");
+            Console.WriteLine("5: Inventory");
+            Console.WriteLine("6: Quit\n");
+            
+            Console.WriteLine("Press number (Keyboard) ");
+            ConsoleKeyInfo input = Console.ReadKey();
 
-            while (userInput < 1 || userInput > 4)
-            {
-                Console.WriteLine("\nWhat would you like to do? ");
-                Console.WriteLine("1: See game stats");
-                Console.WriteLine("2: Move");
-                Console.WriteLine("3: Fight");
-                Console.WriteLine("4: Quest list");
-                Console.WriteLine("5: Inventory");
-                Console.WriteLine("6: Quit\n");
-                
-                Console.Write("Enter number >> ");
-                userInput = int.Parse(Console.ReadLine());
-            }
-
-            if (userInput == 1)
+            if (input.Key == ConsoleKey.D1)
             {
                 Console.WriteLine("=======================");
                 Console.WriteLine(player.Name + " Stats \n");
@@ -57,7 +54,7 @@
                 Console.WriteLine("Level > " + player.Level);
                 Console.WriteLine("=======================");
             }
-            else if (userInput == 2)
+            else if (input.Key == ConsoleKey.D2)
             {
                 Console.WriteLine("\nCurrent location: " + player.CurrentLocation.Name);
                 Console.WriteLine("Description: " + player.CurrentLocation.Description);
@@ -272,7 +269,7 @@
                 }
                 
             }
-            else if (userInput == 3)
+            else if (input.Key == ConsoleKey.D3)
             {
                 if (player.CurrentLocation.MonsterLivingHere == null)
                 {
@@ -348,7 +345,7 @@
                     }
                 }
             }
-            else if (userInput == 4)
+            else if (input.Key == ConsoleKey.D4)
             {
                 Console.WriteLine("=== Quest list ===");
                 if (player.QuestLog.QuestLog == null)
@@ -377,7 +374,7 @@
                     }
                 }
             }
-            else if (userInput == 5)
+            else if (input.Key == ConsoleKey.D5)
             {
                 Console.WriteLine("=== Inventory ===");
                 foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
@@ -386,7 +383,7 @@
                 }
                 Console.WriteLine("================");
             }
-            else if (userInput == 6)
+            else if (input.Key == ConsoleKey.D6)
             {
                 gamePlaying = false;
             }
