@@ -293,7 +293,7 @@
                     while (weaponSwitch != "S" && weaponSwitch != "C")
                     {
                         Console.Write("Switch weapon or continue (S/C) >> ");
-                        weaponSwitch = Console.ReadLine();
+                        weaponSwitch = Console.ReadLine().ToUpper();
                     }
 
                     if (weaponSwitch == "S")
@@ -322,7 +322,7 @@
                             foreach (PlayerQuest playerQuest in player.QuestLog.QuestLog)
                             {
                                 if (playerQuest.TheQuest.Description.Contains(player.CurrentLocation.MonsterLivingHere
-                                        .Name))
+                                        .Name) && playerQuest.IsCompleted == false)
                                 {
                                     Console.WriteLine("\nCompleted quest > " + playerQuest.TheQuest.Name + "!");
                                     player.Gold += playerQuest.TheQuest.RewardGold;
