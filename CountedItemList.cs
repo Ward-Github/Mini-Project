@@ -1,6 +1,6 @@
 ﻿public class CountedItemList
 {
-    List<CountedItem> TheCountedItemList;
+    public List<CountedItem> TheCountedItemList;
 
     public CountedItemList()
     {

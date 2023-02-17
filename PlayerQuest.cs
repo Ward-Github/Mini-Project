@@ -3,9 +3,9 @@
     public Quest TheQuest;
     public bool IsCompleted;
 
-    public PlayerQuest(Quest theQuest, bool isCompleted)
+    public PlayerQuest(Quest theQuest)
     {
-        this.TheQuest = theQuest;
-        this.IsCompleted = isCompleted;
+        TheQuest = theQuest;
+        IsCompleted = false;
     }
 }
