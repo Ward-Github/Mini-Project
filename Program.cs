@@ -280,6 +280,47 @@
                             Console.WriteLine("Weapon > " + player.CurrentLocation.QuestAvailableHere.RewardWeapon.Name);
                         }
                     }
+                    else
+                    {
+                        bool hasItems = false;
+                        
+                        foreach (CountedItem countedItem in player.CurrentLocation.QuestAvailableHere.QuestCompletionItems.TheCountedItemList)
+                        {
+                            foreach (CountedItem countedItem2 in player.Inventory.TheCountedItemList)
+                            {
+                                if (countedItem.TheItem.ID == countedItem2.TheItem.ID && countedItem.Quantity == countedItem2.Quantity)
+                                {
+                                    hasItems = true;
+                                }
+                            }
+                        }
+
+                        if (hasItems)
+                        {
+                            foreach (PlayerQuest playerQuest in player.QuestLog.QuestLog)
+                            {
+                                if (playerQuest.TheQuest.ID ==  player.CurrentLocation.QuestAvailableHere.ID && playerQuest.IsCompleted == false)
+                                {
+                                    Console.WriteLine("\nCompleted quest > " + playerQuest.TheQuest.Name + "!");
+                                    player.Gold += playerQuest.TheQuest.RewardGold;
+                                    player.ExperiencePoints += playerQuest.TheQuest.RewardExperience;
+                                    if (playerQuest.TheQuest.RewardItem != null)
+                                    {
+                                        player.Inventory.AddItem(playerQuest.TheQuest.RewardItem);
+                                    }
+                                    if (playerQuest.TheQuest.RewardWeapon != null)
+                                    {
+                                        player.WeaponList.Add(playerQuest.TheQuest.RewardWeapon);
+                                    }
+                                    playerQuest.IsCompleted = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("You don't have the required items...");
+                        }
+                    }
                 }
             }
             else if (input.Key == ConsoleKey.D3)
@@ -292,14 +333,16 @@
                 else
                 {
                     Console.WriteLine("Current equipped weapon > " + player.CurrentWeapon.Name);
-                    
-                    if (player.WeaponList.Count > 0) 
+
+                    if (player.WeaponList.Count > 0)
                     {
                         string availableWeapons = "-- Available weapons --\n";
                         foreach (Weapon weapon in player.WeaponList)
                         {
-                            availableWeapons += "( ID: " + weapon.ID + " / Name: " + weapon.Name + " / Min dmg: " + weapon.MinimumDamage + " / Max dmg: " + weapon.MaximumDamage + "\n";
+                            availableWeapons += "( ID: " + weapon.ID + " / Name: " + weapon.Name + " / Min dmg: " +
+                                                weapon.MinimumDamage + " / Max dmg: " + weapon.MaximumDamage + "\n";
                         }
+
                         Console.WriteLine(availableWeapons);
 
                         string weaponSwitch = "";
@@ -321,45 +364,41 @@
                         }
                     }
 
-                    bool beatMonster = player.CurrentLocation.MonsterLivingHere.BossFight(player);
-
-                    if (beatMonster)
+                    if (player.CurrentLocation.MonsterLivingHere.isAlive)
                     {
-                        Console.WriteLine("You have successfully beat > " + player.CurrentLocation.MonsterLivingHere.NamePlural);
-                        Console.WriteLine("=== Rewards ===");
-                        Console.WriteLine("Gold > " + player.CurrentLocation.MonsterLivingHere.RewardGold);
-                        Console.WriteLine("Experience > " + player.CurrentLocation.MonsterLivingHere.RewardExperience);
+                        bool beatMonster = player.CurrentLocation.MonsterLivingHere.BossFight(player);
 
-                        player.Gold += player.CurrentLocation.MonsterLivingHere.RewardGold;
-                        player.ExperiencePoints += player.CurrentLocation.MonsterLivingHere.RewardExperience;
-                        
-                        if (player.QuestLog.QuestLog != null)
+                        if (beatMonster)
                         {
-                            foreach (PlayerQuest playerQuest in player.QuestLog.QuestLog)
+                            Console.WriteLine("You have successfully beat > " +
+                                              player.CurrentLocation.MonsterLivingHere.NamePlural);
+                            Console.WriteLine("=== Rewards ===");
+                            Console.WriteLine("Gold > " + player.CurrentLocation.MonsterLivingHere.RewardGold);
+                            Console.WriteLine("Experience > " +
+                                              player.CurrentLocation.MonsterLivingHere.RewardExperience);
+
+                            player.Gold += player.CurrentLocation.MonsterLivingHere.RewardGold;
+                            player.ExperiencePoints += player.CurrentLocation.MonsterLivingHere.RewardExperience;
+                            
+                            foreach (CountedItem countedItem in player.CurrentLocation.MonsterLivingHere.Loot
+                                         .TheCountedItemList)
                             {
-                                if (playerQuest.TheQuest.ID == player.CurrentLocation.MonsterLivingHere.ID && playerQuest.IsCompleted == false)
-                                {
-                                    Console.WriteLine("\nCompleted quest > " + playerQuest.TheQuest.Name + "!");
-                                    player.Gold += playerQuest.TheQuest.RewardGold;
-                                    player.ExperiencePoints += playerQuest.TheQuest.RewardExperience;
-                                    if (playerQuest.TheQuest.RewardItem != null)
-                                    {
-                                        player.Inventory.AddItem(playerQuest.TheQuest.RewardItem);
-                                    }
-                                    if (playerQuest.TheQuest.RewardWeapon != null)
-                                    {
-                                        player.WeaponList.Add(playerQuest.TheQuest.RewardWeapon);
-                                    }
-                                    playerQuest.IsCompleted = true;
-                                }
-                            } 
+                                countedItem.Quantity = 3;
+                                player.Inventory.AddCountedItem(countedItem);
+                            }
+
+                            player.CurrentLocation.MonsterLivingHere.isAlive = false;
+                        }
+                        else
+                        {
+                            player.CurrentLocation = World.Locations[0];
+                            player.CurrentHitPoints = player.MaximumHitPoints;
+                            Console.WriteLine("Sadly you died! Luckily you respawned...");
                         }
                     }
                     else
                     {
-                        player.CurrentLocation = World.Locations[0];
-                        player.CurrentHitPoints = player.MaximumHitPoints;
-                        Console.WriteLine("Sadly you died! Luckily you respawned...");
+                        Console.WriteLine("No monster nearby...");
                     }
                 }
             }
@@ -399,7 +438,7 @@
                 Console.WriteLine("=== Inventory ===");
                 foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
                 {
-                    Console.WriteLine("* " + countedItem.TheItem.Name);
+                    Console.WriteLine("* " + countedItem.TheItem.Name + " x " + countedItem.Quantity);
                 }
                 Console.WriteLine("================");
             }

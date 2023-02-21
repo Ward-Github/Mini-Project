@@ -11,6 +11,7 @@ public class Monster
     public CountedItemList Loot;
     public int CurrentHitPoints;
     public int MaximumHitPoints;
+    public bool isAlive;
 
     public Monster(int id, string name, string namePlural, int maximumDamage, int rewardExperience, int rewardGold,
         int currentHitPoints, int maximumHitPoints)
@@ -24,6 +25,7 @@ public class Monster
         CurrentHitPoints = currentHitPoints;
         MaximumHitPoints = maximumHitPoints;
         Loot = new CountedItemList();
+        isAlive = true;
     }
 
     public bool BossFight(Player player)
