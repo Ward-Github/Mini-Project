@@ -30,34 +30,49 @@ public class Monster
 
     public bool BossFight(Player player)
     {
-        //player naam en health toevoegen
-        Console.WriteLine($@"You have come here to defeat the {Name}
-{player.Name} Health: {player.CurrentHitPoints}
-{Name} Health: {MaximumHitPoints}");
-        while (CurrentHitPoints > 0)
+        Console.WriteLine($"You have come here to defeat the {Name}");
+        Console.WriteLine($"{player.Name} Health: {player.CurrentHitPoints}");
+        Console.WriteLine($"{Name} Health: {MaximumHitPoints}");
+
+        for (int i = 1; i < 4; i++)
         {
-            if (player.CurrentHitPoints > 0)
+            while (CurrentHitPoints > 0)
             {
-                Random random = new Random();
-                int PlayerDamage = random.Next(player.CurrentWeapon.MinimumDamage, player.CurrentWeapon.MaximumDamage);
-                int MonsterDamage = random.Next(0, MaximumDamage);
-                CurrentHitPoints -= PlayerDamage;
-                player.CurrentHitPoints -= MonsterDamage;
-                Console.Clear();
-                Console.WriteLine($@"Current Weapon: {player.CurrentWeapon.Name}
-{Name} hit for {PlayerDamage} HP
-You were hit for {MonsterDamage} HP");
-                PlayerHealthbar(player);
-                EnemyHealthBar();
-                Thread.Sleep(2000);
-                Console.Clear();
-            }
-            else
-            {
-                Console.WriteLine("You died!");
-                return false;
+                if (player.CurrentHitPoints > 0)
+                {
+                    Random random = new Random();
+                    int PlayerDamage = random.Next(player.CurrentWeapon.MinimumDamage,
+                        player.CurrentWeapon.MaximumDamage);
+                    int MonsterDamage = random.Next(0, MaximumDamage);
+
+                    CurrentHitPoints -= PlayerDamage;
+                    player.CurrentHitPoints -= MonsterDamage;
+
+                    Console.Clear();
+                    Console.WriteLine($"Fighting the {i} {Name}");
+                    Console.WriteLine($"Current Weapon: {player.CurrentWeapon.Name}");
+                    Console.WriteLine($"{Name} hit for {PlayerDamage} HP");
+                    Console.WriteLine($"You were hit for {MonsterDamage} HP");
+
+                    PlayerHealthbar(player);
+                    EnemyHealthBar();
+
+                    Thread.Sleep(500);
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.WriteLine("You died!");
+                    break;
+                }
             }
         }
+
+        if (player.CurrentHitPoints > 0)
+        {
+            return false;
+        }
+
         return true;
     }
 

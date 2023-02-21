@@ -283,6 +283,7 @@
                     else
                     {
                         bool hasItems = false;
+                        CountedItem toRemove = new CountedItem(new Item(69, "placeholder", "placeholders"), 1);
                         
                         foreach (CountedItem countedItem in player.CurrentLocation.QuestAvailableHere.QuestCompletionItems.TheCountedItemList)
                         {
@@ -291,9 +292,12 @@
                                 if (countedItem.TheItem.ID == countedItem2.TheItem.ID && countedItem.Quantity == countedItem2.Quantity)
                                 {
                                     hasItems = true;
+                                    toRemove = countedItem2;
                                 }
                             }
                         }
+                        
+                        player.Inventory.TheCountedItemList.Remove(toRemove);
 
                         if (hasItems)
                         {
@@ -315,10 +319,6 @@
                                     playerQuest.IsCompleted = true;
                                 }
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine("You don't have the required items...");
                         }
                     }
                 }
@@ -462,17 +462,13 @@
                 Console.WriteLine($"*  You have leveled up to level {player.Level}!  *");
                 Console.WriteLine("*************************************");
             }
-            
-            if (player.QuestLog.QuestLog != null && player.QuestLog.QuestLog.Count == 3)
-            {
-                bool isDone = true;
-                
-                foreach (PlayerQuest playerQuest in player.QuestLog.QuestLog)
-                {
-                    if (playerQuest.IsCompleted == false) isDone = false;
-                }
 
-                if (isDone) gamePlaying = false;
+            foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
+            {
+                if (countedItem.TheItem.ID == 8)
+                {
+                    gamePlaying = false;
+                }
             }
         }
         
