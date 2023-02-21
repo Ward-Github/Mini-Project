@@ -292,28 +292,33 @@
                 else
                 {
                     Console.WriteLine("Current equipped weapon > " + player.CurrentWeapon.Name);
-                        
-                    string availableWeapons = "-- Available weapons --\n";
-                    foreach (Weapon weapon in player.WeaponList)
+                    
+                    if (player.WeaponList.Count > 0) 
                     {
-                        availableWeapons += "( ID: " + weapon.ID + " / Name: " + weapon.Name + " / Min dmg: " + weapon.MinimumDamage + " / Max dmg: " + weapon.MaximumDamage + "\n";
-                    }
-                    Console.WriteLine(availableWeapons);
+                        string availableWeapons = "-- Available weapons --\n";
+                        foreach (Weapon weapon in player.WeaponList)
+                        {
+                            availableWeapons += "( ID: " + weapon.ID + " / Name: " + weapon.Name + " / Min dmg: " + weapon.MinimumDamage + " / Max dmg: " + weapon.MaximumDamage + "\n";
+                        }
+                        Console.WriteLine(availableWeapons);
 
-                    string weaponSwitch = string.Empty;
-                    while (weaponSwitch != "S" && weaponSwitch != "C")
-                    {
-                        Console.Write("Switch weapon or continue (S/C) >> ");
-                        weaponSwitch = Console.ReadLine().ToUpper();
-                    }
+                        string weaponSwitch = "";
+                        while (weaponSwitch != "S" && weaponSwitch != "C")
+                        {
+                            Console.Write("Switch weapon or continue (S/C) >> ");
+                            var keyInfo = Console.ReadKey();
+                            weaponSwitch = keyInfo.Key.ToString().ToUpper();
+                            Console.WriteLine();
+                        }
 
-                    if (weaponSwitch == "S")
-                    {
-                        Console.Write("ID weapon >> ");
-                        int weaponToEquip = int.Parse(Console.ReadLine());
-                        Weapon weapontoEquip = World.WeaponByID(weaponToEquip);
-                        player.CurrentWeapon = weapontoEquip;
-                        Console.WriteLine("Succesfully equipped weapon > " + weapontoEquip.Name);
+                        if (weaponSwitch == "S")
+                        {
+                            Console.Write("ID weapon >> ");
+                            int weaponToEquip = int.Parse(Console.ReadLine());
+                            Weapon weapontoEquip = World.WeaponByID(weaponToEquip);
+                            player.CurrentWeapon = weapontoEquip;
+                            Console.WriteLine("Successfully equipped weapon > " + weapontoEquip.Name);
+                        }
                     }
 
                     bool beatMonster = player.CurrentLocation.MonsterLivingHere.BossFight(player);
@@ -332,8 +337,7 @@
                         {
                             foreach (PlayerQuest playerQuest in player.QuestLog.QuestLog)
                             {
-                                if (playerQuest.TheQuest.Description.Contains(player.CurrentLocation.MonsterLivingHere
-                                        .Name) && playerQuest.IsCompleted == false)
+                                if (playerQuest.TheQuest.ID == player.CurrentLocation.MonsterLivingHere.ID && playerQuest.IsCompleted == false)
                                 {
                                     Console.WriteLine("\nCompleted quest > " + playerQuest.TheQuest.Name + "!");
                                     player.Gold += playerQuest.TheQuest.RewardGold;
@@ -415,14 +419,26 @@
                 player.CurrentHitPoints += 10;
                 player.MaximumHitPoints += 10;
                 player.CurrentWeapon.MaximumDamage += player.Level;
-                Console.WriteLine("\n********************************");
-                Console.WriteLine($"*You have leveled up to level {player.Level}!*");
-                Console.WriteLine("********************************");
+                Console.WriteLine("\n*************************************");
+                Console.WriteLine($"*  You have leveled up to level {player.Level}!  *");
+                Console.WriteLine("*************************************");
+            }
+            
+            if (player.QuestLog.QuestLog != null && player.QuestLog.QuestLog.Count == 3)
+            {
+                bool isDone = true;
+                
+                foreach (PlayerQuest playerQuest in player.QuestLog.QuestLog)
+                {
+                    if (playerQuest.IsCompleted == false) isDone = false;
+                }
+
+                if (isDone) gamePlaying = false;
             }
         }
         
         Console.WriteLine("Thanks for playing!");
-        Console.WriteLine("Press enter to quit...");
+        Console.Write("Press enter to quit...");
         Console.ReadLine();
         Console.WriteLine("Quiting...");
     }

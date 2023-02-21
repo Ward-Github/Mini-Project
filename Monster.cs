@@ -56,7 +56,6 @@ You were hit for {MonsterDamage} HP");
                 return false;
             }
         }
-        Console.WriteLine("You win!");
         return true;
     }
 
