@@ -45,6 +45,7 @@
 
             if (input.Key == ConsoleKey.D1)
             {
+                Console.Clear();
                 Console.WriteLine("=======================");
                 Console.WriteLine(player.Name + " Stats \n");
                 Console.WriteLine("Current Hitpoints > " + player.CurrentHitPoints);
@@ -54,6 +55,7 @@
             }
             else if (input.Key == ConsoleKey.D2)
             {
+                Console.Clear();
                 Console.WriteLine("\nCurrent location: " + player.CurrentLocation.Name);
                 Console.WriteLine("Description: " + player.CurrentLocation.Description);
 
@@ -91,6 +93,7 @@
 
                 if (toLocation.Key == ConsoleKey.N)
                 {
+                    Console.Clear();
                     if (player.CurrentLocation.LocationToNorth != null) {
                         if (player.CurrentLocation.LocationToNorth.ItemRequiredToEnter == null)
                         {
@@ -127,6 +130,7 @@
                 }
                 else if (toLocation.Key == ConsoleKey.E)
                 {
+                    Console.Clear();
                     if (player.CurrentLocation.LocationToEast != null)
                     {
                         if (player.CurrentLocation.LocationToEast.ItemRequiredToEnter == null)
@@ -165,6 +169,7 @@
                 }
                 else if (toLocation.Key == ConsoleKey.W)
                 {
+                    Console.Clear();
                     if (player.CurrentLocation.LocationToWest != null) 
                     {
                         if (player.CurrentLocation.LocationToWest.ItemRequiredToEnter == null)
@@ -202,6 +207,7 @@
                 }
                 else if (toLocation.Key == ConsoleKey.S)
                 {
+                    Console.Clear();
                     if (player.CurrentLocation.LocationToSouth != null) 
                     {
                         if (player.CurrentLocation.LocationToSouth.ItemRequiredToEnter == null)
@@ -256,6 +262,7 @@
                     
                     if (!alreadyDone) 
                     {
+                        Console.Clear();
                         player.QuestLog.QuestLog.Add(new PlayerQuest(player.CurrentLocation.QuestAvailableHere));
                         Console.WriteLine("New quest found!");
                         Console.WriteLine("Quest name > " + player.CurrentLocation.QuestAvailableHere.Name);
@@ -277,6 +284,7 @@
             }
             else if (input.Key == ConsoleKey.D3)
             {
+                Console.Clear();
                 if (player.CurrentLocation.MonsterLivingHere == null)
                 {
                     Console.WriteLine("No monster nearby...");
@@ -353,6 +361,7 @@
             }
             else if (input.Key == ConsoleKey.D4)
             {
+                Console.Clear();
                 Console.WriteLine("=== Quest list ===");
                 if (player.QuestLog.QuestLog == null)
                 {
@@ -382,6 +391,7 @@
             }
             else if (input.Key == ConsoleKey.D5)
             {
+                Console.Clear();
                 Console.WriteLine("=== Inventory ===");
                 foreach (CountedItem countedItem in player.Inventory.TheCountedItemList)
                 {
@@ -395,6 +405,7 @@
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Invalid input...");
             }
             
@@ -404,7 +415,9 @@
                 player.CurrentHitPoints += 10;
                 player.MaximumHitPoints += 10;
                 player.CurrentWeapon.MaximumDamage += player.Level;
-                Console.WriteLine("You have leveled up to level " + player.Level + "!");
+                Console.WriteLine("\n********************************");
+                Console.WriteLine($"*You have leveled up to level {player.Level}!*");
+                Console.WriteLine("********************************");
             }
         }
         
