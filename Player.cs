@@ -27,4 +27,64 @@ public class Player
         
         Console.WriteLine($"Health: {CurrentHitPoints}");
     }
+
+    public void DisplayInventory()
+    {
+        Console.WriteLine("=== Inventory ===");
+        foreach (CountedItem countedItem in Inventory.TheCountedItemList)
+        {
+            Console.WriteLine("* " + countedItem.TheItem.Name);
+        }
+
+        Console.WriteLine("================");
+    }
+
+    public void DisplayStats()
+    {
+        Console.WriteLine("=======================");
+        Console.WriteLine(Name + " Stats \n");
+        Console.WriteLine("Current Hitpoints > " + CurrentHitPoints);
+        Console.WriteLine("Gold > " + Gold);
+        Console.WriteLine("Level > " + Level);
+        Console.WriteLine("=======================");
+    }
+
+    public void MoveLocation(Location location)
+    {
+        if (location != null)
+        {
+            if (location.ItemRequiredToEnter == null)
+            {
+                CurrentLocation = location;
+            }
+            else
+            {
+                Item requiredItem = location.ItemRequiredToEnter;
+                bool hasItem = false;
+
+                foreach (CountedItem countedItem in Inventory.TheCountedItemList)
+                {
+                    if (countedItem.TheItem == requiredItem)
+                    {
+                        hasItem = true;
+                    }
+                }
+
+                if (hasItem)
+                {
+                    Console.WriteLine("You used your " + requiredItem.Name + " to access this location!");
+                    CurrentLocation = location;
+                }
+                else
+                {
+                    Console.WriteLine("You don't have the required item to access this location > " +
+                                      requiredItem.Name);
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("You can't go there...");
+        }
+    }
 }
