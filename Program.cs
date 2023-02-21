@@ -244,21 +244,34 @@
 
                 if (player.CurrentLocation.QuestAvailableHere != null)
                 {
-                    player.QuestLog.QuestLog.Add(new PlayerQuest(player.CurrentLocation.QuestAvailableHere));
-                    Console.WriteLine("New quest found!");
-                    Console.WriteLine("Quest name > " + player.CurrentLocation.QuestAvailableHere.Name);
-                    Console.WriteLine("Quest description > " + player.CurrentLocation.QuestAvailableHere.Description);
-                    Console.WriteLine("\nThere will be some rewards for you if you complete it...");
-                    Console.WriteLine("Experience points > " + player.CurrentLocation.QuestAvailableHere.RewardExperience);
-                    Console.WriteLine("Gold > " + player.CurrentLocation.QuestAvailableHere.RewardGold);
-                    if (player.CurrentLocation.QuestAvailableHere.RewardItem != null)
+                    bool alreadyDone = false;
+                    
+                    foreach (PlayerQuest playerQuest in player.QuestLog.QuestLog)
                     {
-                        Console.WriteLine("Item > " + player.CurrentLocation.QuestAvailableHere.RewardItem.Name);
+                        if (playerQuest.TheQuest.Name == player.CurrentLocation.QuestAvailableHere.Name)
+                        {
+                            alreadyDone = true;
+                        }
                     }
-
-                    if (player.CurrentLocation.QuestAvailableHere.RewardWeapon != null)
+                    
+                    if (!alreadyDone) 
                     {
-                        Console.WriteLine("Weapon > " + player.CurrentLocation.QuestAvailableHere.RewardWeapon.Name);
+                        player.QuestLog.QuestLog.Add(new PlayerQuest(player.CurrentLocation.QuestAvailableHere));
+                        Console.WriteLine("New quest found!");
+                        Console.WriteLine("Quest name > " + player.CurrentLocation.QuestAvailableHere.Name);
+                        Console.WriteLine("Quest description > " + player.CurrentLocation.QuestAvailableHere.Description);
+                        Console.WriteLine("\nThere will be some rewards for you if you complete it...");
+                        Console.WriteLine("Experience points > " + player.CurrentLocation.QuestAvailableHere.RewardExperience);
+                        Console.WriteLine("Gold > " + player.CurrentLocation.QuestAvailableHere.RewardGold);
+                        if (player.CurrentLocation.QuestAvailableHere.RewardItem != null)
+                        {
+                            Console.WriteLine("Item > " + player.CurrentLocation.QuestAvailableHere.RewardItem.Name);
+                        }
+
+                        if (player.CurrentLocation.QuestAvailableHere.RewardWeapon != null)
+                        {
+                            Console.WriteLine("Weapon > " + player.CurrentLocation.QuestAvailableHere.RewardWeapon.Name);
+                        }
                     }
                 }
             }
