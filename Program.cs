@@ -29,6 +29,7 @@
         Player player = new Player(playerName);
         player.CurrentLocation = World.Locations[0];
         player.CurrentWeapon = World.Weapons[0];
+        player.WeaponList.Add(player.CurrentWeapon);
 
         while (gamePlaying)
         {
@@ -356,11 +357,24 @@
 
                         if (weaponSwitch == "S")
                         {
-                            Console.Write("ID weapon >> ");
-                            int weaponToEquip = int.Parse(Console.ReadLine());
-                            Weapon weapontoEquip = World.WeaponByID(weaponToEquip);
-                            player.CurrentWeapon = weapontoEquip;
-                            Console.WriteLine("Successfully equipped weapon > " + weapontoEquip.Name);
+                            Weapon? weapontoEquip = null;
+
+                            while (weapontoEquip == null)
+                            {
+                                Console.Write("ID weapon >> ");
+                                int weaponToEquip = int.Parse(Console.ReadLine());
+                                weapontoEquip = World.WeaponByID(weaponToEquip);
+                                
+                                if (weapontoEquip != null) 
+                                {
+                                    player.CurrentWeapon = weapontoEquip;
+                                    Console.WriteLine("Successfully equipped weapon > " + weapontoEquip.Name);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid id, try again...");
+                                }
+                            }
                         }
                     }
 
