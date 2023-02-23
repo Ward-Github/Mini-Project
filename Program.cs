@@ -455,7 +455,6 @@
             if (player.ExperiencePoints >= 10) {
                 player.Level += player.ExperiencePoints / 10;
                 player.ExperiencePoints = 0;
-                player.CurrentHitPoints += 10;
                 player.MaximumHitPoints += 10;
                 player.CurrentWeapon.MaximumDamage += player.Level;
                 Console.WriteLine("\n*************************************");

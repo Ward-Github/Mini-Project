@@ -30,50 +30,43 @@ public class Monster
 
     public bool BossFight(Player player)
     {
-        Console.WriteLine($"You have come here to defeat the {Name}");
-        Console.WriteLine($"{player.Name} Health: {player.CurrentHitPoints}");
-        Console.WriteLine($"{Name} Health: {MaximumHitPoints}");
-
-        for (int i = 1; i < 4; i++)
+        Random random = new Random();
+        
+        for (int i = 0; i < 3; i++)
         {
             while (CurrentHitPoints > 0)
             {
                 if (player.CurrentHitPoints > 0)
                 {
-                    Random random = new Random();
-                    int PlayerDamage = random.Next(player.CurrentWeapon.MinimumDamage,
-                        player.CurrentWeapon.MaximumDamage);
-                    int MonsterDamage = random.Next(0, MaximumDamage);
+                    int playerDamage = random.Next(player.CurrentWeapon.MinimumDamage,
+                        player.CurrentWeapon.MaximumDamage + 1);
+                    int monsterDamage = random.Next(0, MaximumDamage + 1);
 
-                    CurrentHitPoints -= PlayerDamage;
-                    player.CurrentHitPoints -= MonsterDamage;
-
-                    Console.Clear();
-                    Console.WriteLine($"Fighting the {i} {Name}");
-                    Console.WriteLine($"Current Weapon: {player.CurrentWeapon.Name}");
-                    Console.WriteLine($"{Name} hit for {PlayerDamage} HP");
-                    Console.WriteLine($"You were hit for {MonsterDamage} HP");
-
-                    PlayerHealthbar(player);
-                    EnemyHealthBar();
-
-                    Thread.Sleep(500);
-                    Console.Clear();
+                    player.CurrentHitPoints -= monsterDamage;
+                    CurrentHitPoints -= playerDamage;
+                    
+                    Console.WriteLine("\nPlayer hit for " + monsterDamage);
+                    Console.WriteLine("Monster hit for " + playerDamage);
+                    
+                    Console.WriteLine("Player health > " + player.CurrentHitPoints);
+                    Console.WriteLine("Monster health > " + CurrentHitPoints);
+                    
+                    Thread.Sleep(1000);
                 }
-                else
-                {
-                    Console.WriteLine("You died!");
-                    break;
-                }
+
+                break;
             }
+
+            CurrentHitPoints = MaximumHitPoints;
+
+            if (i == 0) Console.WriteLine($"Defeated 1st {Name}!");
+            if (i == 1) Console.WriteLine($"Defeated 2nd {Name}!");
+            if (i == 2) Console.WriteLine($"Defeated 3rd {Name}!");
         }
 
-        if (player.CurrentHitPoints > 0)
-        {
-            return false;
-        }
+        if (player.CurrentHitPoints > 0) return true;
 
-        return true;
+        return false;
     }
 
     public void PlayerHealthbar(Player player)
